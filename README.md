@@ -9,3 +9,5 @@ Known Bugs:
 - Some animated jokers will have frames flash when they spawn (Flash Card, will find more maybe later)
 
 Artists and progress for each Joker are detailed [here](https://docs.google.com/spreadsheets/d/1MGBtcHmb2hb9bE-ueEiKwMdn3c27fzgU46PYq8b6UhM/edit#gid=0).
+
+Version number: (0.0241)
