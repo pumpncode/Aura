@@ -1,10 +1,10 @@
 --- STEAMODDED HEADER
 --- MOD_NAME: Aura
 --- MOD_ID: Aura
---- MOD_AUTHOR: [MathIsFun_, ChromaPIE, Bard, Grassy311, RattlingSnow353, Solace, RadicaAprils, chloe_cromslor]
+--- MOD_AUTHOR: [MathIsFun_, ChromaPIE, Bard, Grassy311, RattlingSnow353, Solace, RadicaAprils, chloe_cromslor, SadCube]
 --- MOD_DESCRIPTION: Adds animations to Jokers.
 --- BADGE_COLOUR: 3469ab
---- VERSION: 0.023
+--- VERSION: 0.024
 
 AnimatedJokers = {
     j_joker = { frames_per_row = 11, frames = 22 },
@@ -50,23 +50,23 @@ AnimatedJokers = {
     j_scholar = { frames_per_row = 9, frames = 45 },
     j_business = {},
     j_supernova = {},
-    j_ride_the_bus = {},
+    j_ride_the_bus = { frames_per_row = 9, frames = 36 },
     j_space = {},
-    j_egg = {},
+    j_egg = { frames_per_row = 4, frames = 8 },
     j_burglar = {},
     j_blackboard = { frames_per_row = 9, frames = 59, individual = true },
     j_runner = {},
     j_ice_cream = {},
-    j_dna = {},
+    j_dna = { frames = 11 },
     j_splash = {},
     j_blue_joker = {},
     j_sixth_sense = { frames = 13, extra = { frames = 20 } }, --todo: card destroy animation
-    j_constellation = { frames_per_row = 6, frames = 60},
+    j_constellation = { frames_per_row = 6, frames = 60 },
     j_hiker = {},
     j_faceless = { frames_per_row = 4, frames = 24 },
     j_green_joker = {},
     j_superposition = {},
-    j_todo_list = { frames_per_row = 12, frames = 96}, --todo: animate on trigger
+    j_todo_list = { frames_per_row = 12, frames = 96 }, --todo: animate on trigger
     j_cavendish = {},
     j_card_sharp = {},
     j_red_card = { frames_per_row = 19, frames = 349 },
@@ -90,7 +90,7 @@ AnimatedJokers = {
     j_erosion = {},
     j_reserved_parking = {},
     j_mail = {},
-    j_to_the_moon = { frames_per_row = 10, frames = 50},
+    j_to_the_moon = { frames_per_row = 10, frames = 50 },
     j_hallucination = {},
     j_fortune_teller = {},
     j_juggler = {},
@@ -118,7 +118,7 @@ AnimatedJokers = {
     j_sock_and_buskin = {},
     j_swashbuckler = {},
     j_troubadour = {},
-    j_certificate = {},
+    j_certificate = { frames_per_row = 7, frames = 28 },
     j_smeared = {},
     j_throwback = {},
     j_hanging_chad = {},
@@ -143,15 +143,15 @@ AnimatedJokers = {
     j_order = {},
     j_tribe = {},
     j_stuntman = {},
-    j_invisible = {},
+    j_invisible = {frames = 11},
     j_brainstorm = { frames_per_row = 8, frames = 39, individual = true },
     j_satellite = {},
     j_shoot_the_moon = {},
-    j_drivers_license = {},
+    j_drivers_license = { frames = 2, individual = true },
     j_cartomancer = {},
-    j_astronomer = {frames = 29},
+    j_astronomer = {frames = 29 },
     j_burnt = {},
-    j_bootstraps = {},
+    j_bootstraps = {frames_per_row = 19, frames = 38 },
     j_caino = {},
     j_triboulet = {},
     j_yorick = {},
