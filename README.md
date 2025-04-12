@@ -1,10 +1,10 @@
 # Aura
 Aura is a mod that seeks to add animations to every Joker in Balatro.
 
-**30/150** Jokers completed, 5 work in progress
+**40/150** Jokers completed, 5 work in progress
 
 Known Bugs:
-- Pixel Smoothing causes the border in Castle to look wonky
+- Pixel Smoothing causes the border in Castle and clubs in Seeing Double to look wonky
 - Rerolling while having a duplicated Flash Card (via Invisible Joker/Ankh) will crash the game
 - Some animated jokers will have frames flash when they spawn (Flash Card, will find more maybe later)
 
