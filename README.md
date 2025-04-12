@@ -8,4 +8,4 @@ Known Bugs:
 - Rerolling while having a duplicated Flash Card (via Invisible Joker/Ankh) will crash the game
 - Some animated jokers will have frames flash when they spawn (Flash Card, will find more maybe later)
 
-Artists and progress for each Joker are detailed [here](https://docs.google.com/spreadsheets/d/1MGBtcHmb2hb9bE-ueEiKwMdn3c27fzgU46PYq8b6UhM/edit#gid=0).
+Artists and progress for each Joker are detailed [here](https://docs.google.com/spreadsheets/d/174gWOyMyTUSuESsiqWSt5OYEr8mcDdAM2Ig9oDxMTlQ/edit?gid=0#gid=0).
