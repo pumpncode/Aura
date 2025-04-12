@@ -1,10 +1,10 @@
 --- STEAMODDED HEADER
 --- MOD_NAME: Aura
 --- MOD_ID: Aura
---- MOD_AUTHOR: [MathIsFun_, ChromaPIE, Bard, Grassy311, RattlingSnow353, Solace, RadicaAprils, chloe_cromslor, SadCube]
---- MOD_DESCRIPTION: Adds animations to Jokers.
+--- MOD_AUTHOR: [MathIsFun_, ChromaPIE, Bard]
+--- MOD_DESCRIPTION: Adds animations to Jokers. Art by: Bard, Grassy311, RattlingSnow353, Solace, RadicaAprils, chloe_cromslor, and SadCube
 --- BADGE_COLOUR: 3469ab
---- VERSION: 0.0241
+--- VERSION: 0.025
 
 AnimatedJokers = {
     j_joker = { frames_per_row = 11, frames = 22 },
@@ -33,7 +33,7 @@ AnimatedJokers = {
     j_marble = {},
     j_loyalty_cfard = {},
     j_8_ball = {},
-    j_misprint = {},
+    j_misprint = { frames_per_row = 13, frames = 65 },
     j_dusk = { frames_per_row = 13, frames = 78, fps = 5 },
     j_raised_fist = { frames_per_row = 4, frames = 14 },
     j_chaos = {},
@@ -43,7 +43,7 @@ AnimatedJokers = {
     j_abstract = {},
     j_delayed_grat = {},
     j_hack = { frames_per_row = 8, frames = 64 },
-    j_pareidolia = {},
+    j_pareidolia = { frames_per_row = 5, frames = 20 },
     j_gros_michel = {},
     j_even_steven = {},
     j_odd_todd = {},
@@ -53,7 +53,7 @@ AnimatedJokers = {
     j_ride_the_bus = { frames_per_row = 9, frames = 36 },
     j_space = {},
     j_egg = { frames_per_row = 4, frames = 8 },
-    j_burglar = {},
+    j_burglar = { frames_per_row = 19, frames = 76 },
     j_blackboard = { frames_per_row = 9, frames = 59, individual = true },
     j_runner = {},
     j_ice_cream = {},
@@ -110,7 +110,7 @@ AnimatedJokers = {
     j_walkie_talkie = {},
     j_selzer = {},
     j_castle = { frames_per_row = 9, frames = 69, start_frame = 0, extra = { frames_per_row = 5, frames = 5, fps = 5, start_frame = 0 } },
-    j_smiley = {},
+    j_smiley = { frames_per_row = 13, frames = 150 },
     j_campfire = {},
     j_ticket = {},
     j_mr_bones = {},
@@ -134,7 +134,7 @@ AnimatedJokers = {
     j_merry_andy = {},
     j_oops = {},
     j_idol = {},
-    j_seeing_double = {},
+    j_seeing_double = {frames_per_row = 13, frames = 150, extra = { frames_per_row = 5, frames = 20, start_frame = 0 } },
     j_matador = {},
     j_hit_the_road = {},
     j_duo = {},
