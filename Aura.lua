@@ -4,7 +4,7 @@
 --- MOD_AUTHOR: [MathIsFun_, ChromaPIE, Bard, TwoBlueDogs]
 --- MOD_DESCRIPTION: Adds animations to Jokers. Art by: Bard, Grassy311, RattlingSnow353, Solace, RadicaAprils, chloe_cromslor, and SadCube
 --- BADGE_COLOUR: 3469ab
---- VERSION: 0.025
+--- VERSION: 0.03
 
 AnimatedJokers = {
     j_joker = { frames_per_row = 11, frames = 22 },
@@ -158,7 +158,7 @@ AnimatedJokers = {
     j_chicot = {},
     j_perkeo = {}
 }
-AnimatedPlanets = {
+AnimatedPlanets = { -- actually any consumable, not just planets
     c_mercury  = { frames = 24 },
     c_venus    = { frames = 24 },
     c_earth    = { frames = 24 },
@@ -171,8 +171,47 @@ AnimatedPlanets = {
     c_eris     = { frames = 24 },
     c_planet_x = { frames = 24 },
     c_pluto    = { frames = 24 },
+
+    c_fool           = {},
+    c_magician       = {},
+    c_high_priestess = {},
+    c_empress        = {},
+    c_emperor        = {},
+    c_heirophant     = {},
+    c_lovers         = { frames= 11 },
+    c_chariot        = {},
+    c_justice        = {},
     c_wheel_of_fortune = { frames = 12 },
-    c_lovers   = { frames= 11 }
+    c_strength       = {},
+    c_hanged_man     = {},
+    c_death          = {},
+    c_temperance     = {},
+    c_devil          = {},
+    c_tower          = {},
+    c_star           = {},
+    c_moon           = {},
+    c_sun            = {},
+    c_judgement      = {},
+    c_world          = {},
+
+    c_ankh        = {},
+    c_aura        = {},
+    c_black_hole  = {},
+    c_cryptid     = {},
+    c_deja_vu     = {},
+    c_ectoplasm   = {},
+    c_familiar    = {},
+    c_grim        = {},
+    c_hex         = {},
+    c_immolate    = {},
+    c_incantation = {},
+    c_medium      = {},
+    c_ouija       = {},
+    c_sigil       = {},
+    c_soul        = {},
+    c_talisman    = {},
+    c_trance      = {},
+    c_wraith      = {}
 }
 AnimatedIndividuals = {}
 
