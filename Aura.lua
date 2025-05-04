@@ -191,12 +191,12 @@ function Aura.add_individual(card)
 end
 
 if SMODS.Atlas then
-    -- Register all Jokers/Sprites
+    --Register all Jokers/Sprites
     for i = 1, 150 do
         local k = G.P_CENTER_POOLS.Joker[i].key
         local v = AnimatedJokers[k]
         if v and v.frames then
-            -- sprite
+            --sprite
             SMODS.Atlas {
                 key = k,
                 path = k .. ".png",
@@ -211,7 +211,7 @@ if SMODS.Atlas then
                     py = v.py or 95
                 }
             end
-            -- joker override
+            --joker override
             SMODS[v.set or "Joker"]:take_ownership(k, {
                 atlas = k,
                 pos = { x = 0, y = 0, extra = v.extra and {x = 0, y = 0, atlas = "aura_"..k.."_extra"} },
@@ -220,10 +220,10 @@ if SMODS.Atlas then
             SMODS[v and v.set or "Joker"]:take_ownership(k, {}, true)
         end
     end
-    -- Register all Animated Planets/Sprites
+    --Register all Planets/Sprites
     for k, v in pairs(AnimatedPlanets) do
         if v.frames then
-            -- sprite
+            --sprite
             SMODS.Atlas {
                 key = k,
                 path = k .. ".png",
@@ -238,7 +238,7 @@ if SMODS.Atlas then
                     py = v.py or 95
                 }
             end
-            -- planet override
+            --planet override
             SMODS[v.set or "Consumable"]:take_ownership(k, {
                 atlas = k,
                 pos = { x = 0, y = 0, extra = v.extra and {x = 0, y = 0, atlas = "aura_"..k.."_extra"} },
