@@ -1,7 +1,7 @@
 --- STEAMODDED HEADER
 --- MOD_NAME: Aura
 --- MOD_ID: Aura
---- MOD_AUTHOR: [MathIsFun_, ChromaPIE, Bard]
+--- MOD_AUTHOR: [MathIsFun_, ChromaPIE, Bard, TwoBlueDogs]
 --- MOD_DESCRIPTION: Adds animations to Jokers. Art by: Bard, Grassy311, RattlingSnow353, Solace, RadicaAprils, chloe_cromslor, and SadCube
 --- BADGE_COLOUR: 3469ab
 --- VERSION: 0.025
@@ -158,6 +158,20 @@ AnimatedJokers = {
     j_chicot = {},
     j_perkeo = {}
 }
+AnimatedPlanets = {
+    c_mercury  = { frames = 24 },
+    c_venus    = { frames = 24 },
+    c_earth    = { frames = 24 },
+    c_mars     = { frames = 24 },
+    c_jupiter  = { frames = 24 },
+    c_saturn   = { frames = 24 },
+    c_uranus   = { frames = 24 },
+    c_neptune  = { frames = 24 },
+    c_ceres    = { frames = 24 },
+    c_eris     = { frames = 24 },
+    c_planet_x = { frames = 24 },
+    c_pluto    = { frames = 24 }
+}
 AnimatedIndividuals = {}
 
 Aura = {}
@@ -177,12 +191,12 @@ function Aura.add_individual(card)
 end
 
 if SMODS.Atlas then
-    --Register all Jokers/Sprites
+    -- Register all Jokers/Sprites
     for i = 1, 150 do
         local k = G.P_CENTER_POOLS.Joker[i].key
         local v = AnimatedJokers[k]
         if v and v.frames then
-            --sprite
+            -- sprite
             SMODS.Atlas {
                 key = k,
                 path = k .. ".png",
@@ -197,13 +211,40 @@ if SMODS.Atlas then
                     py = v.py or 95
                 }
             end
-            --joker override
+            -- joker override
             SMODS[v.set or "Joker"]:take_ownership(k, {
                 atlas = k,
                 pos = { x = 0, y = 0, extra = v.extra and {x = 0, y = 0, atlas = "aura_"..k.."_extra"} },
             })
         else
-            SMODS[v and v.set or "Joker"]:take_ownership(k,{},true)
+            SMODS[v and v.set or "Joker"]:take_ownership(k, {}, true)
+        end
+    end
+    -- Register all Animated Planets/Sprites
+    for k, v in pairs(AnimatedPlanets) do
+        if v.frames then
+            -- sprite
+            SMODS.Atlas {
+                key = k,
+                path = k .. ".png",
+                px = v.px or 71,
+                py = v.py or 95
+            }
+            if v.extra then
+                SMODS.Atlas {
+                    key = k.."_extra",
+                    path = k .. "_extra.png",
+                    px = v.px or 71,
+                    py = v.py or 95
+                }
+            end
+            -- planet override
+            SMODS[v.set or "Consumable"]:take_ownership(k, {
+                atlas = k,
+                pos = { x = 0, y = 0, extra = v.extra and {x = 0, y = 0, atlas = "aura_"..k.."_extra"} },
+            })
+        else
+            SMODS[v and v.set or "Joker"]:take_ownership(k, {}, true)
         end
     end
 else
@@ -250,10 +291,10 @@ end
 local upd = Game.update
 
 function Aura.update_frame(dt, k, obj, jkr)
-    if AnimatedJokers[k] and obj and (AnimatedJokers[k].frames or AnimatedJokers[k].individual) then
+    local anim = AnimatedJokers[k] or AnimatedPlanets[k]
+    if anim and obj and (anim.frames or anim.individual) then
         local next_frame = false
         local next_frame_extra = false
-        local anim = AnimatedJokers[k]
         if anim.individual then
             if jkr then
                 if not jkr.animation then jkr.animation = {} end
@@ -316,8 +357,11 @@ function Aura.update_frame(dt, k, obj, jkr)
 end
 
 function Game:update(dt)
-    upd(self,dt)
+    upd(self, dt)
     for k, v in pairs(AnimatedJokers) do
+        Aura.update_frame(dt, k, G.P_CENTERS[k])
+    end
+    for k, v in pairs(AnimatedPlanets) do
         Aura.update_frame(dt, k, G.P_CENTERS[k])
     end
     for _, v in pairs(AnimatedIndividuals) do
