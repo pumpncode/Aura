@@ -170,7 +170,9 @@ AnimatedPlanets = {
     c_ceres    = { frames = 24 },
     c_eris     = { frames = 24 },
     c_planet_x = { frames = 24 },
-    c_pluto    = { frames = 24 }
+    c_pluto    = { frames = 24 },
+    c_wheel_of_fortune = { frames = 12 },
+    c_lovers   = { frames= 11 }
 }
 AnimatedIndividuals = {}
 
