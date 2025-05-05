@@ -2,9 +2,9 @@
 --- MOD_NAME: Aura
 --- MOD_ID: Aura
 --- MOD_AUTHOR: [MathIsFun_, ChromaPIE, Bard, TwoBlueDogs]
---- MOD_DESCRIPTION: Adds animations to Jokers. Art by: Bard, Grassy311, RattlingSnow353, Solace, RadicaAprils, chloe_cromslor, and SadCube
+--- MOD_DESCRIPTION: Adds animations to Jokers. Art by: Bard, Grassy311, RattlingSnow353, Solace, RadicaAprils, chloe_cromslor, SadCube, and Mincoiin
 --- BADGE_COLOUR: 3469ab
---- VERSION: 0.03
+--- VERSION: 0.031
 
 AnimatedJokers = {
     j_joker = { frames_per_row = 11, frames = 22 },
@@ -31,7 +31,7 @@ AnimatedJokers = {
     j_banner = {},
     j_mystic_summit = {},
     j_marble = {},
-    j_loyalty_cfard = {},
+    j_loyalty_card = { frames = 7 },
     j_8_ball = {},
     j_misprint = { frames_per_row = 13, frames = 65 },
     j_dusk = { frames_per_row = 13, frames = 78, fps = 5 },
@@ -51,7 +51,7 @@ AnimatedJokers = {
     j_business = { frames_per_row = 13, frames = 120 },
     j_supernova = {},
     j_ride_the_bus = { frames_per_row = 9, frames = 36 },
-    j_space = {},
+    j_space = { frames = 96 },
     j_egg = { frames_per_row = 4, frames = 8 },
     j_burglar = { frames_per_row = 19, frames = 76 },
     j_blackboard = { frames_per_row = 9, frames = 59, individual = true },
@@ -100,7 +100,7 @@ AnimatedJokers = {
     j_lucky_cat = {},
     j_baseball = {},
     j_bull = {},
-    j_diet_cola = {},
+    j_diet_cola = { frames = 20 },
     j_trading = {},
     j_flash = { frames_per_row = 13, frames = 26, individual = true, immediate = true },
     j_popcorn = {},
@@ -119,7 +119,7 @@ AnimatedJokers = {
     j_swashbuckler = {},
     j_troubadour = {},
     j_certificate = { frames_per_row = 7, frames = 28 },
-    j_smeared = {},
+    j_smeared = { frames = 10 },
     j_throwback = {},
     j_hanging_chad = {},
     j_rough_gem = {},
@@ -158,16 +158,17 @@ AnimatedJokers = {
     j_chicot = {},
     j_perkeo = {}
 }
-AnimatedPlanets = { -- actually any consumable, not just planets
+AnimatedPlanets = {
     c_fool = {},
     c_magician = {},
     c_high_priestess = {},
     c_empress = {},
     c_emperor = {},
-    c_heirophant = {},
+    c_hierophant = {},
     c_lovers = { frames = 11 },
     c_chariot = {},
     c_justice = {},
+    c_hermit = {},
     c_wheel_of_fortune = { frames = 12 },
     c_strength = {},
     c_hanged_man = {},
@@ -177,7 +178,7 @@ AnimatedPlanets = { -- actually any consumable, not just planets
     c_tower = {},
     c_star = {},
     c_moon = {},
-    c_sun = {},
+    c_star = {},
     c_judgement = {},
     c_world = {},
     c_mercury = { frames = 24 },
@@ -189,11 +190,11 @@ AnimatedPlanets = { -- actually any consumable, not just planets
     c_uranus = { frames = 24 },
     c_neptune = { frames = 24 },
     c_pluto = { frames = 24 },
+    c_planet_x = { frames = 24 },
     c_ceres = { frames = 24 },
     c_eris = { frames = 24 },
-    c_planet_x = { frames = 24 },
     c_familiar = {},
-    c_grim = {}, 
+    c_grim = {},
     c_incantation = {},
     c_talisman = {},
     c_aura = {},
@@ -212,7 +213,38 @@ AnimatedPlanets = { -- actually any consumable, not just planets
     c_black_hole = {}
 }
 AnimatedVouchers = {
-    v_wasteful = {}
+    v_overstock = {},
+    v_overstock_plus = {},
+    v_clearance_sale = {},
+    v_liquidation = {},
+    v_hone = {},
+    v_glow_up = {},
+    v_reroll_surplus = {},
+    v_reroll_glut = {},
+    v_crystal_ball = {},
+    v_omen_globe = {},
+    v_telescope = {},
+    v_observatory = {},
+    v_grabber = {},
+    v_nacho_tong = {},
+    v_wasteful = { frames = 9 },
+    v_recyclomancy = {},
+    v_tarot_merchant = {},
+    v_tarot_tycoon = {},
+    v_planet_merchant = {},
+    v_planet_tycoon = {},
+    v_seed_money = {},
+    v_money_tree = {},
+    v_blank = {},
+    v_antimatter = {},
+    v_magic_trick = {},
+    v_illusion = {},
+    v_hieroglyph = {},
+    v_petroglyph = {},
+    v_directors_cut = {},
+    v_retcon = {},
+    v_paint_brush = {},
+    v_palette
 }
 AnimatedIndividuals = {}
 
