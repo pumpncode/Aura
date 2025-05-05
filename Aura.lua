@@ -178,7 +178,7 @@ AnimatedPlanets = {
     c_tower = {},
     c_star = {},
     c_moon = {},
-    c_star = {},
+    c_sun = {},
     c_judgement = {},
     c_world = {},
     c_mercury = { frames = 24 },
@@ -244,7 +244,7 @@ AnimatedVouchers = {
     v_directors_cut = {},
     v_retcon = {},
     v_paint_brush = {},
-    v_palette
+    v_palette = {}
 }
 AnimatedIndividuals = {}
 
