@@ -48,7 +48,7 @@ AnimatedJokers = {
     j_even_steven = {},
     j_odd_todd = {},
     j_scholar = { frames_per_row = 9, frames = 45 },
-    j_business = {},
+    j_business = { frames_per_row = 13, frames = 120 },
     j_supernova = {},
     j_ride_the_bus = { frames_per_row = 9, frames = 36 },
     j_space = {},
