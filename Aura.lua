@@ -4,7 +4,7 @@
 --- MOD_AUTHOR: [MathIsFun_, ChromaPIE, Bard, TwoBlueDogs]
 --- MOD_DESCRIPTION: Adds animations to Jokers. Art by: Bard, Grassy311, RattlingSnow353, Solace, RadicaAprils, chloe_cromslor, and SadCube
 --- BADGE_COLOUR: 3469ab
---- VERSION: 0.025
+--- VERSION: 0.03
 
 AnimatedJokers = {
     j_joker = { frames_per_row = 11, frames = 22 },
@@ -158,21 +158,58 @@ AnimatedJokers = {
     j_chicot = {},
     j_perkeo = {}
 }
-AnimatedPlanets = {
-    c_mercury  = { frames = 24 },
-    c_venus    = { frames = 24 },
-    c_earth    = { frames = 24 },
-    c_mars     = { frames = 24 },
-    c_jupiter  = { frames = 24 },
-    c_saturn   = { frames = 24 },
-    c_uranus   = { frames = 24 },
-    c_neptune  = { frames = 24 },
-    c_ceres    = { frames = 24 },
-    c_eris     = { frames = 24 },
-    c_planet_x = { frames = 24 },
-    c_pluto    = { frames = 24 },
+AnimatedPlanets = { -- actually any consumable, not just planets
+    c_fool = {},
+    c_magician = {},
+    c_high_priestess = {},
+    c_empress = {},
+    c_emperor = {},
+    c_heirophant = {},
+    c_lovers = { frames = 11 },
+    c_chariot = {},
+    c_justice = {},
     c_wheel_of_fortune = { frames = 12 },
-    c_lovers   = { frames= 11 }
+    c_strength = {},
+    c_hanged_man = {},
+    c_death = {},
+    c_temperance = {},
+    c_devil = {},
+    c_tower = {},
+    c_star = {},
+    c_moon = {},
+    c_sun = {},
+    c_judgement = {},
+    c_world = {},
+    c_mercury = { frames = 24 },
+    c_venus = { frames = 24 },
+    c_earth = { frames = 24 },
+    c_mars = { frames = 24 },
+    c_jupiter = { frames = 24 },
+    c_saturn = { frames = 24 },
+    c_uranus = { frames = 24 },
+    c_neptune = { frames = 24 },
+    c_pluto = { frames = 24 },
+    c_ceres = { frames = 24 },
+    c_eris = { frames = 24 },
+    c_planet_x = { frames = 24 },
+    c_familiar = {},
+    c_grim = {}, 
+    c_incantation = {},
+    c_talisman = {},
+    c_aura = {},
+    c_wraith = {},
+    c_sigil = {},
+    c_ouija = {},
+    c_ectoplasm = {},
+    c_immolate = {},
+    c_ankh = {},
+    c_deja_vu = {},
+    c_hex = {},
+    c_trance = {},
+    c_medium = {},
+    c_cryptid = {},
+    c_soul = {},
+    c_black_hole = {}
 }
 AnimatedIndividuals = {}
 
