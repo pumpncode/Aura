@@ -244,7 +244,7 @@ AnimatedVouchers = {
     v_directors_cut = {},
     v_retcon = {},
     v_paint_brush = {},
-    v_palette
+    v_palette = {}
 }
 AnimatedIndividuals = {}
 
