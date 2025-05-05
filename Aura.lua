@@ -4,7 +4,7 @@
 --- MOD_AUTHOR: [MathIsFun_, ChromaPIE, Bard, TwoBlueDogs]
 --- MOD_DESCRIPTION: Adds animations to Jokers. Art by: Bard, Grassy311, RattlingSnow353, Solace, RadicaAprils, chloe_cromslor, SadCube, and Mincoiin
 --- BADGE_COLOUR: 3469ab
---- VERSION: 0.031
+--- VERSION: 0.0311
 
 AnimatedJokers = {
     j_joker = { frames_per_row = 11, frames = 22 },
@@ -176,7 +176,7 @@ AnimatedPlanets = {
     c_temperance = {},
     c_devil = {},
     c_tower = {},
-    c_star = {},
+    c_sun = {},
     c_moon = {},
     c_star = {},
     c_judgement = {},
