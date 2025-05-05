@@ -159,62 +159,57 @@ AnimatedJokers = {
     j_perkeo = {}
 }
 AnimatedPlanets = { -- actually any consumable, not just planets
-    c_mercury  = { frames = 24 },
-    c_venus    = { frames = 24 },
-    c_earth    = { frames = 24 },
-    c_mars     = { frames = 24 },
-    c_jupiter  = { frames = 24 },
-    c_saturn   = { frames = 24 },
-    c_uranus   = { frames = 24 },
-    c_neptune  = { frames = 24 },
-    c_ceres    = { frames = 24 },
-    c_eris     = { frames = 24 },
-    c_planet_x = { frames = 24 },
-    c_pluto    = { frames = 24 },
-
-    c_fool           = {},
-    c_magician       = {},
+    c_fool = {},
+    c_magician = {},
     c_high_priestess = {},
-    c_empress        = {},
-    c_emperor        = {},
-    c_heirophant     = {},
-    c_lovers         = { frames= 11 },
-    c_chariot        = {},
-    c_justice        = {},
+    c_empress = {},
+    c_emperor = {},
+    c_heirophant = {},
+    c_lovers = { frames = 11 },
+    c_chariot = {},
+    c_justice = {},
     c_wheel_of_fortune = { frames = 12 },
-    c_strength       = {},
-    c_hanged_man     = {},
-    c_death          = {},
-    c_temperance     = {},
-    c_devil          = {},
-    c_tower          = {},
-    c_star           = {},
-    c_moon           = {},
-    c_sun            = {},
-    c_judgement      = {},
-    c_world          = {},
-
-    c_ankh        = {},
-    c_aura        = {},
-    c_black_hole  = {},
-    c_cryptid     = {},
-    c_deja_vu     = {},
-    c_ectoplasm   = {},
-    c_familiar    = {},
-    c_grim        = {},
-    c_hex         = {},
-    c_immolate    = {},
+    c_strength = {},
+    c_hanged_man = {},
+    c_death = {},
+    c_temperance = {},
+    c_devil = {},
+    c_tower = {},
+    c_star = {},
+    c_moon = {},
+    c_sun = {},
+    c_judgement = {},
+    c_world = {},
+    c_mercury = { frames = 24 },
+    c_venus = { frames = 24 },
+    c_earth = { frames = 24 },
+    c_mars = { frames = 24 },
+    c_jupiter = { frames = 24 },
+    c_saturn = { frames = 24 },
+    c_uranus = { frames = 24 },
+    c_neptune = { frames = 24 },
+    c_pluto = { frames = 24 },
+    c_ceres = { frames = 24 },
+    c_eris = { frames = 24 },
+    c_planet_x = { frames = 24 },
+    c_familiar = {},
+    c_grim = {}, 
     c_incantation = {},
-    c_medium      = {},
-    c_ouija       = {},
-    c_sigil       = {},
-    c_soul        = {},
-    c_talisman    = {},
-    c_trance      = {},
-    c_wraith      = {}
-}
-AnimatedVouchers = {
-    v_wasteful = {}
+    c_talisman = {},
+    c_aura = {},
+    c_wraith = {},
+    c_sigil = {},
+    c_ouija = {},
+    c_ectoplasm = {},
+    c_immolate = {},
+    c_ankh = {},
+    c_deja_vu = {},
+    c_hex = {},
+    c_trance = {},
+    c_medium = {},
+    c_cryptid = {},
+    c_soul = {},
+    c_black_hole = {}
 }
 AnimatedIndividuals = {}
 
@@ -288,34 +283,7 @@ if SMODS.Atlas then
                 pos = { x = 0, y = 0, extra = v.extra and {x = 0, y = 0, atlas = "aura_"..k.."_extra"} },
             })
         else
-            SMODS[v and v.set or "Consumable"]:take_ownership(k, {}, true)
-        end
-    end
-    --Register all Vouchers/Sprites
-    for k, v in pairs(AnimatedVouchers) do
-        if v.frames then
-            --sprite
-            SMODS.Atlas {
-                key = k,
-                path = k .. ".png",
-                px = v.px or 71,
-                py = v.py or 95
-            }
-            if v.extra then
-                SMODS.Atlas {
-                    key = k.."_extra",
-                    path = k .. "_extra.png",
-                    px = v.px or 71,
-                    py = v.py or 95
-                }
-            end
-            --voucher override
-            SMODS[v.set or "Voucher"]:take_ownership(k, {
-                atlas = k,
-                pos = { x = 0, y = 0, extra = v.extra and {x = 0, y = 0, atlas = "aura_"..k.."_extra"} },
-            })
-        else
-            SMODS[v and v.set or "Voucher"]:take_ownership(k, {}, true)
+            SMODS[v and v.set or "Joker"]:take_ownership(k, {}, true)
         end
     end
 else
@@ -362,7 +330,7 @@ end
 local upd = Game.update
 
 function Aura.update_frame(dt, k, obj, jkr)
-    local anim = AnimatedJokers[k] or AnimatedPlanets[k] or AnimatedVouchers[k]
+    local anim = AnimatedJokers[k] or AnimatedPlanets[k]
     if anim and obj and (anim.frames or anim.individual) then
         local next_frame = false
         local next_frame_extra = false
@@ -433,9 +401,6 @@ function Game:update(dt)
         Aura.update_frame(dt, k, G.P_CENTERS[k])
     end
     for k, v in pairs(AnimatedPlanets) do
-        Aura.update_frame(dt, k, G.P_CENTERS[k])
-    end
-    for k, v in pairs(AnimatedVouchers) do
         Aura.update_frame(dt, k, G.P_CENTERS[k])
     end
     for _, v in pairs(AnimatedIndividuals) do
