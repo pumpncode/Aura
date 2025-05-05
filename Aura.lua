@@ -211,6 +211,9 @@ AnimatedPlanets = { -- actually any consumable, not just planets
     c_soul = {},
     c_black_hole = {}
 }
+AnimatedVouchers = {
+    v_wasteful = {}
+}
 AnimatedIndividuals = {}
 
 Aura = {}
@@ -283,7 +286,34 @@ if SMODS.Atlas then
                 pos = { x = 0, y = 0, extra = v.extra and {x = 0, y = 0, atlas = "aura_"..k.."_extra"} },
             })
         else
-            SMODS[v and v.set or "Joker"]:take_ownership(k, {}, true)
+            SMODS[v and v.set or "Consumable"]:take_ownership(k, {}, true)
+        end
+    end
+    --Register all Vouchers/Sprites
+    for k, v in pairs(AnimatedVouchers) do
+        if v.frames then
+            --sprite
+            SMODS.Atlas {
+                key = k,
+                path = k .. ".png",
+                px = v.px or 71,
+                py = v.py or 95
+            }
+            if v.extra then
+                SMODS.Atlas {
+                    key = k.."_extra",
+                    path = k .. "_extra.png",
+                    px = v.px or 71,
+                    py = v.py or 95
+                }
+            end
+            --voucher override
+            SMODS[v.set or "Voucher"]:take_ownership(k, {
+                atlas = k,
+                pos = { x = 0, y = 0, extra = v.extra and {x = 0, y = 0, atlas = "aura_"..k.."_extra"} },
+            })
+        else
+            SMODS[v and v.set or "Voucher"]:take_ownership(k, {}, true)
         end
     end
 else
@@ -330,7 +360,7 @@ end
 local upd = Game.update
 
 function Aura.update_frame(dt, k, obj, jkr)
-    local anim = AnimatedJokers[k] or AnimatedPlanets[k]
+    local anim = AnimatedJokers[k] or AnimatedPlanets[k] or AnimatedVouchers[k]
     if anim and obj and (anim.frames or anim.individual) then
         local next_frame = false
         local next_frame_extra = false
@@ -401,6 +431,9 @@ function Game:update(dt)
         Aura.update_frame(dt, k, G.P_CENTERS[k])
     end
     for k, v in pairs(AnimatedPlanets) do
+        Aura.update_frame(dt, k, G.P_CENTERS[k])
+    end
+    for k, v in pairs(AnimatedVouchers) do
         Aura.update_frame(dt, k, G.P_CENTERS[k])
     end
     for _, v in pairs(AnimatedIndividuals) do
