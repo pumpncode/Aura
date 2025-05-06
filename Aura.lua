@@ -651,8 +651,8 @@ SMODS.Joker:take_ownership('loyalty_card',
          if card.ability then
             if card.ability.loyalty_remaining ~= card.children.center.sprite_pos_copy.x - 1 then -- loyalty_remaining is the. loyalty card procs remaining, duh
                card.children.center:set_sprite_pos({x = card.ability.loyalty_remaining + 1 or 0, y = 0}) -- set sprite pos acc to loy_remaining
-               card:juice_up(0.2,0.2) -- solely for fun
-               play_sound("cardSlide2") -- this sound actually interprets as hole punching
+               card:juice_up(0.2,0.2) -- small jiggle when the frame changes
+            --    play_sound("cardSlide2") -- this sound actually interprets as hole punching
             end
          else
             card.children.center:set_sprite_pos({x = 0, y = 0}) -- Just In Case
