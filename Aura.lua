@@ -32,7 +32,7 @@ AnimatedJokers = {
     j_mystic_summit = {},
     j_marble = {},
     j_loyalty_card = { frames = 7 },
-    j_8_ball = {},
+    j_8_ball = {}, -- todo: animate when triggered
     j_misprint = { frames_per_row = 13, frames = 65 },
     j_dusk = { frames_per_row = 13, frames = 78, fps = 5 },
     j_raised_fist = { frames_per_row = 4, frames = 14 },
@@ -41,7 +41,7 @@ AnimatedJokers = {
     j_steel_joker = {},
     j_scary_face = {},
     j_abstract = {},
-    j_delayed_grat = {},
+    j_delayed_grat = {}, -- todo: animate when primed
     j_hack = { frames_per_row = 8, frames = 64 },
     j_pareidolia = { frames_per_row = 5, frames = 20 },
     j_gros_michel = {},
@@ -56,7 +56,7 @@ AnimatedJokers = {
     j_burglar = { frames_per_row = 19, frames = 76 },
     j_blackboard = { frames_per_row = 9, frames = 59, individual = true },
     j_runner = {},
-    j_ice_cream = {},
+    j_ice_cream = {}, -- todo: change sprite as it is used
     j_dna = { frames = 11 },
     j_splash = {},
     j_blue_joker = {},
@@ -65,14 +65,14 @@ AnimatedJokers = {
     j_hiker = {},
     j_faceless = { frames_per_row = 4, frames = 24 },
     j_green_joker = {},
-    j_superposition = {},
-    j_todo_list = { frames_per_row = 12, frames = 96 }, --todo: animate on trigger
+    j_superposition = {}, -- todo: animate when triggered
+    j_todo_list = { frames_per_row = 12, frames = 96 }, -- todo: show hand that needs to be played/animate on trigger
     j_cavendish = {},
     j_card_sharp = {},
     j_red_card = { frames_per_row = 19, frames = 349 },
     j_madness = {},
     j_square = { frames_per_row = 11, frames = 22 },
-    j_seance = {},
+    j_seance = {}, -- todo: animate when triggered
     j_riff_raff = { frames_per_row = 14, frames = 490 },
     j_vampire = { frames_per_row = 6, frames = 30 },
     j_shortcut = {},
@@ -81,15 +81,15 @@ AnimatedJokers = {
     j_baron = {},
     j_cloud_9 = {},
     j_rocket = {},
-    j_obelisk = {},
+    j_obelisk = {}, -- todo: animate when promoted
     j_midas_mask = {},
     j_luchador = {},
     j_photograph = { frames = 48 },
     j_gift = {},
-    j_turtle_bean = {},
+    j_turtle_bean = {}, -- todo: change sprite as it is used
     j_erosion = {},
     j_reserved_parking = {},
-    j_mail = {},
+    j_mail = {}, -- todo: show rank
     j_to_the_moon = { frames_per_row = 10, frames = 50 },
     j_hallucination = {},
     j_fortune_teller = {},
@@ -97,18 +97,18 @@ AnimatedJokers = {
     j_drunkard = {},
     j_stone = {},
     j_golden = {},
-    j_lucky_cat = {},
+    j_lucky_cat = {}, -- todo: animate when promoted
     j_baseball = {},
     j_bull = {},
     j_diet_cola = { frames = 20 },
     j_trading = {},
     j_flash = { frames_per_row = 13, frames = 26, individual = true, immediate = true },
-    j_popcorn = {},
+    j_popcorn = {}, -- todo: change sprite as it is used
     j_trousers = { frames = 48 },
     j_ancient = {},
     j_ramen = {},
     j_walkie_talkie = {},
-    j_selzer = {},
+    j_selzer = {}, -- todo: change sprite as it is used
     j_castle = { frames_per_row = 9, frames = 69, start_frame = 0, extra = { frames_per_row = 5, frames = 5, fps = 5, start_frame = 0 } },
     j_smiley = { frames_per_row = 13, frames = 150 },
     j_campfire = {},
@@ -118,9 +118,9 @@ AnimatedJokers = {
     j_sock_and_buskin = {},
     j_swashbuckler = {},
     j_troubadour = {},
-    j_certificate = { frames_per_row = 7, frames = 28 },
+    j_certificate = { frames_per_row = 7, frames = 28, individual = true, extra = { frames = 5, fps = 0 } },
     j_smeared = { frames = 10 },
-    j_throwback = {},
+    j_throwback = {}, -- todo: animate when promoted
     j_hanging_chad = {},
     j_rough_gem = {},
     j_bloodstone = {},
@@ -133,17 +133,17 @@ AnimatedJokers = {
     j_wee = { frames_per_row = 11, frames = 22 },
     j_merry_andy = {},
     j_oops = {},
-    j_idol = {},
+    j_idol = {}, -- todo: open mouth to show suit and rank
     j_seeing_double = {frames_per_row = 13, frames = 150, extra = { frames_per_row = 5, frames = 20, start_frame = 0 } },
     j_matador = {},
-    j_hit_the_road = {},
+    j_hit_the_road = {}, -- todo: animate when promoted
     j_duo = {},
     j_trio = {},
     j_family = {},
     j_order = {},
     j_tribe = {},
     j_stuntman = {},
-    j_invisible = {frames = 11},
+    j_invisible = {frames = 11, individual = true},
     j_brainstorm = { frames_per_row = 8, frames = 39, individual = true },
     j_satellite = {},
     j_shoot_the_moon = {},
@@ -152,11 +152,11 @@ AnimatedJokers = {
     j_astronomer = {frames = 29 },
     j_burnt = {},
     j_bootstraps = {frames_per_row = 19, frames = 38 },
-    j_caino = {},
-    j_triboulet = {},
-    j_yorick = {},
-    j_chicot = {},
-    j_perkeo = {}
+    j_caino = {}, -- todo: add animations
+    j_triboulet = {}, -- todo: add animations
+    j_yorick = {}, -- todo: add animations
+    j_chicot = {}, -- todo: add animations
+    j_perkeo = {} -- todo: add animations
 }
 AnimatedPlanets = {
     c_fool = {},
@@ -669,6 +669,63 @@ function Card:calculate_joker(context)
         end
     end
 
+    local ss = Card.set_seal
+    function Card:set_seal(seal)
+        ss(self,seal)
+        if seal then
+            Aura.current_seal = seal
+        end
+    end
+    if self.ability.name == "Certificate" then
+        if context.first_hand_drawn then
+            ss(self)
+            if Aura.current_seal == 'Gold' then
+                AnimatedJokers.j_certificate.individual = false
+                AnimatedJokers.j_certificate.extra.fps = 1
+                G.P_CENTERS["j_certificate"].pos.extra.x = 1
+                AnimatedJokers.j_certificate.extra.fps = 0
+            end
+            if Aura.current_seal == 'Purple' then
+                AnimatedJokers.j_certificate.individual = false
+                AnimatedJokers.j_certificate.extra.fps = 1
+                G.P_CENTERS["j_certificate"].pos.extra.x = 2
+                AnimatedJokers.j_certificate.extra.fps = 0
+            end
+            if Aura.current_seal == 'Red' then
+                AnimatedJokers.j_certificate.individual = false
+                AnimatedJokers.j_certificate.extra.fps = 1
+                G.P_CENTERS["j_certificate"].pos.extra.x = 3
+                AnimatedJokers.j_certificate.extra.fps = 0
+            end
+            if Aura.current_seal == 'Blue' then
+                AnimatedJokers.j_certificate.individual = false
+                AnimatedJokers.j_certificate.extra.fps = 1
+                G.P_CENTERS["j_certificate"].pos.extra.x = 4
+                AnimatedJokers.j_certificate.extra.fps = 0
+            end
+        end
+        if context.end_of_round then
+            AnimatedJokers.j_certificate.individual = true
+            Aura.add_individual(self)
+            self.animation = { target = 0 }
+            G.P_CENTERS["j_certificate"].pos.x = 0
+            G.P_CENTERS["j_certificate"].pos.y = 0
+            G.P_CENTERS["j_certificate"].pos.extra.x = 0
+            AnimatedJokers.j_certificate.extra.fps = 0
+        end
+    end
+
+    if self.ability.name == "Invisible Joker" and context.end_of_round then
+        if self.ability.invis_rounds == self.ability.extra/2 then
+            Aura.add_individual(self)
+            self.animation = { target = 5 }
+        else if self.ability.invis_rounds >= self.ability.extra then
+            Aura.add_individual(self)
+            self.animation = { target = 10 }
+        end
+        end
+    end
+
     return ret1, ret2
 end
 
@@ -684,16 +741,6 @@ SMODS.Joker:take_ownership('loyalty_card',
          else
             card.children.center:set_sprite_pos({x = 0, y = 0}) -- Just In Case
          end
-   end
-    }
-)
-
-SMODS.Joker:take_ownership('invisible',
-    { -- the table of properties you want to change
-   update = function(self, card, dt) -- change only update() to not mess with calculate()
-        if card.ability.invis_rounds >= card.ability.extra then -- card.ability.extra = 2 by default on invisible joker
-            card.children.center:set_sprite_pos({x = 10, y = 0})
-        end
    end
     }
 )
