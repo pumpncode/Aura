@@ -66,7 +66,7 @@ AnimatedJokers = {
     j_faceless = { frames_per_row = 4, frames = 24 },
     j_green_joker = {},
     j_superposition = {},
-    j_todo_list = { frames_per_row = 12, frames = 96 }, --todo: animate on trigger
+    j_todo_list = { frames_per_row = 12, frames = 96 },
     j_cavendish = {},
     j_card_sharp = {},
     j_red_card = { frames_per_row = 19, frames = 349 },
