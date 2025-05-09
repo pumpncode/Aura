@@ -4,7 +4,7 @@
 --- MOD_AUTHOR: [MathIsFun_, ChromaPIE, Bard, TwoBlueDogs]
 --- MOD_DESCRIPTION: Adds animations to Jokers. Art by: Bard, Grassy311, RattlingSnow353, Solace, RadicaAprils, chloe_cromslor, SadCube, and Mincoiin
 --- BADGE_COLOUR: 3469ab
---- VERSION: 0.0311
+--- VERSION: 0.032
 
 AnimatedJokers = {
     j_joker = { frames_per_row = 11, frames = 22 },
@@ -66,7 +66,7 @@ AnimatedJokers = {
     j_faceless = { frames_per_row = 4, frames = 24 },
     j_green_joker = {},
     j_superposition = {},
-    j_todo_list = { frames_per_row = 12, frames = 96 }, -- todo: show hand that needs to be played
+    j_todo_list = { frames_per_row = 12, frames = 96 }, -- todo: show hand that needs to be played/animate on trigger
     j_cavendish = {},
     j_card_sharp = {},
     j_red_card = { frames_per_row = 19, frames = 349 },
@@ -74,7 +74,7 @@ AnimatedJokers = {
     j_square = { frames_per_row = 11, frames = 22 },
     j_seance = {},
     j_riff_raff = { frames_per_row = 14, frames = 490 },
-    j_vampire = {},
+    j_vampire = { frames_per_row = 6, frames = 30 },
     j_shortcut = {},
     j_hologram = {},
     j_vagabond = { frames = 30, fps = 5 },
@@ -217,21 +217,21 @@ AnimatedVouchers = {
     v_overstock_plus = {},
     v_clearance_sale = {},
     v_liquidation = {},
-    v_hone = {},
+    v_hone = { frames = 24, frames_per_row = 12 },
     v_glow_up = {},
-    v_reroll_surplus = {},
-    v_reroll_glut = {},
-    v_crystal_ball = {},
-    v_omen_globe = {},
+    v_reroll_surplus = { frames = 11 },
+    v_reroll_glut = { frames = 8 },
+    v_crystal_ball = { frames = 150, frames_per_row = 13 },
+    v_omen_globe = { frames = 150, frames_per_row = 13 },
     v_telescope = {},
     v_observatory = {},
     v_grabber = {},
     v_nacho_tong = {},
     v_wasteful = { frames = 9 },
     v_recyclomancy = {},
-    v_tarot_merchant = {},
+    v_tarot_merchant = { frames = 12 },
     v_tarot_tycoon = {},
-    v_planet_merchant = {},
+    v_planet_merchant = { frames = 12 },
     v_planet_tycoon = {},
     v_seed_money = {},
     v_money_tree = {},
