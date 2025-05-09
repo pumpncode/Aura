@@ -641,6 +641,16 @@ function Card:calculate_joker(context)
             end)
         }))
     end
+    --Driver's License
+    if self.ability.name == "Driver's License" and context.cardarea == G.jokers then
+        if (self.ability.driver_tally or 0) >= 16 then
+            Aura.add_individual(self)
+            self.animation = {target = 1}
+        else
+            Aura.add_individual(self)
+            self.animation = {target = 0}
+        end
+    end
 
     return ret1, ret2
 end
