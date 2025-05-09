@@ -108,7 +108,7 @@ AnimatedJokers = {
     j_ancient = {},
     j_ramen = {},
     j_walkie_talkie = {},
-    j_selzer = {}, -- todo: change sprite as it is used
+    j_selzer = { frames = 5, individual = true }, -- todo: change sprite as it is used
     j_castle = { frames_per_row = 9, frames = 69, start_frame = 0, extra = { frames_per_row = 5, frames = 5, fps = 5, start_frame = 0 } },
     j_smiley = { frames_per_row = 13, frames = 150 },
     j_campfire = {},
@@ -641,31 +641,25 @@ function Card:calculate_joker(context)
             end)
         }))
     end
+
     --Driver's License
-    if self.ability.name == "Driver's License" and context.cardarea == G.jokers then
-        if (self.ability.driver_tally or 0) >= 16 then
+    if self.ability.name == "Driver's License" and context.cardarea == G.jokers and self.ability.driver_tally then
+        if self.ability.driver_tally > 15 then
             if self.config.center.pos.x == 0 then
-                G.E_MANAGER:add_event(Event({
-                    func = (function()
-                        self:flip()
-                        Aura.add_individual(self)
-                        self.animation = {target = 1}
-                        self:flip()
-                        return true
-                    end)
-                }))
+                self:flip()
+                Aura.add_individual(self)
+                self.animation = {target = 1}
+                Aura.update_frame(0, self.config.center_key, self.config.center, self)
+                self:flip()
             end
-            else if self.config.center.pos.x == 1 then
-                G.E_MANAGER:add_event(Event({
-                    func = (function()
-                        self:flip()
-                        Aura.add_individual(self)
-                        self.animation = {target = 0}
-                        self:flip()
-                        return true
-                    end)
-                }))
+        else if self.ability.driver_tally < 16 then
+            if self.config.center.pos.x == 1 then
+                self:flip()
+                Aura.add_individual(self)
+                self.animation = {target = 0}
+                self:flip()
             end
+        end
         end
     end
 
@@ -723,6 +717,29 @@ function Card:calculate_joker(context)
             Aura.add_individual(self)
             self.animation = { target = 10 }
         end
+        end
+    end
+
+    if self.ability.name == "Seltzer" and context.cardarea == G.jokers then
+        if self.ability.extra == (10 or 9) then
+            Aura.add_individual(self)
+            self.animation = { target = 0 }
+        end
+        if self.ability.extra == 8 then
+            Aura.add_individual(self)
+            self.animation = { target = 1 }
+        end
+        if self.ability.extra == 6 then
+            Aura.add_individual(self)
+            self.animation = { target = 2 }
+        end
+        if self.ability.extra == 4 then
+            Aura.add_individual(self)
+            self.animation = { target = 3 }
+        end
+        if self.ability.extra == 2 then
+            Aura.add_individual(self)
+            self.animation = { target = 4 }
         end
     end
 
