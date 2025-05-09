@@ -66,7 +66,7 @@ AnimatedJokers = {
     j_faceless = { frames_per_row = 4, frames = 24 },
     j_green_joker = {},
     j_superposition = {},
-    j_todo_list = { frames_per_row = 12, frames = 96 },
+    j_todo_list = { frames_per_row = 12, frames = 96 }, -- todo: show hand that needs to be played
     j_cavendish = {},
     j_card_sharp = {},
     j_red_card = { frames_per_row = 19, frames = 349 },
@@ -89,7 +89,7 @@ AnimatedJokers = {
     j_turtle_bean = {},
     j_erosion = {},
     j_reserved_parking = {},
-    j_mail = {},
+    j_mail = {}, -- todo: show rank
     j_to_the_moon = { frames_per_row = 10, frames = 50 },
     j_hallucination = {},
     j_fortune_teller = {},
@@ -118,7 +118,7 @@ AnimatedJokers = {
     j_sock_and_buskin = {},
     j_swashbuckler = {},
     j_troubadour = {},
-    j_certificate = { frames_per_row = 7, frames = 28 },
+    j_certificate = { frames_per_row = 7, frames = 28, individual = true, extra = { frames = 5, fps = 0 } },
     j_smeared = { frames = 10 },
     j_throwback = {},
     j_hanging_chad = {},
@@ -133,7 +133,7 @@ AnimatedJokers = {
     j_wee = { frames_per_row = 11, frames = 22 },
     j_merry_andy = {},
     j_oops = {},
-    j_idol = {},
+    j_idol = {}, -- todo: open mouth to show suit and rank
     j_seeing_double = {frames_per_row = 13, frames = 150, extra = { frames_per_row = 5, frames = 20, start_frame = 0 } },
     j_matador = {},
     j_hit_the_road = {},
@@ -143,7 +143,7 @@ AnimatedJokers = {
     j_order = {},
     j_tribe = {},
     j_stuntman = {},
-    j_invisible = {frames = 11},
+    j_invisible = {frames = 11, individual = true},
     j_brainstorm = { frames_per_row = 8, frames = 39, individual = true },
     j_satellite = {},
     j_shoot_the_moon = {},
@@ -669,6 +669,63 @@ function Card:calculate_joker(context)
         end
     end
 
+    local ss = Card.set_seal
+    function Card:set_seal(seal)
+        ss(self,seal)
+        if seal then
+            Aura.current_seal = seal
+        end
+    end
+    if self.ability.name == "Certificate" then
+        if context.first_hand_drawn then
+            ss(self)
+            if Aura.current_seal == 'Gold' then
+                AnimatedJokers.j_certificate.individual = false
+                AnimatedJokers.j_certificate.extra.fps = 1
+                G.P_CENTERS["j_certificate"].pos.extra.x = 1
+                AnimatedJokers.j_certificate.extra.fps = 0
+            end
+            if Aura.current_seal == 'Purple' then
+                AnimatedJokers.j_certificate.individual = false
+                AnimatedJokers.j_certificate.extra.fps = 1
+                G.P_CENTERS["j_certificate"].pos.extra.x = 2
+                AnimatedJokers.j_certificate.extra.fps = 0
+            end
+            if Aura.current_seal == 'Red' then
+                AnimatedJokers.j_certificate.individual = false
+                AnimatedJokers.j_certificate.extra.fps = 1
+                G.P_CENTERS["j_certificate"].pos.extra.x = 3
+                AnimatedJokers.j_certificate.extra.fps = 0
+            end
+            if Aura.current_seal == 'Blue' then
+                AnimatedJokers.j_certificate.individual = false
+                AnimatedJokers.j_certificate.extra.fps = 1
+                G.P_CENTERS["j_certificate"].pos.extra.x = 4
+                AnimatedJokers.j_certificate.extra.fps = 0
+            end
+        end
+        if context.end_of_round then
+            AnimatedJokers.j_certificate.individual = true
+            Aura.add_individual(self)
+            self.animation = { target = 0 }
+            G.P_CENTERS["j_certificate"].pos.x = 0
+            G.P_CENTERS["j_certificate"].pos.y = 0
+            G.P_CENTERS["j_certificate"].pos.extra.x = 0
+            AnimatedJokers.j_certificate.extra.fps = 0
+        end
+    end
+
+    if self.ability.name == "Invisible Joker" and context.end_of_round then
+        if self.ability.invis_rounds == self.ability.extra/2 then
+            Aura.add_individual(self)
+            self.animation = { target = 5 }
+        else if self.ability.invis_rounds >= self.ability.extra then
+            Aura.add_individual(self)
+            self.animation = { target = 10 }
+        end
+        end
+    end
+
     return ret1, ret2
 end
 
@@ -684,16 +741,6 @@ SMODS.Joker:take_ownership('loyalty_card',
          else
             card.children.center:set_sprite_pos({x = 0, y = 0}) -- Just In Case
          end
-   end
-    }
-)
-
-SMODS.Joker:take_ownership('invisible',
-    { -- the table of properties you want to change
-   update = function(self, card, dt) -- change only update() to not mess with calculate()
-        if card.ability.invis_rounds >= card.ability.extra then -- card.ability.extra = 2 by default on invisible joker
-            card.children.center:set_sprite_pos({x = 10, y = 0})
-        end
    end
     }
 )
