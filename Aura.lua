@@ -644,11 +644,28 @@ function Card:calculate_joker(context)
     --Driver's License
     if self.ability.name == "Driver's License" and context.cardarea == G.jokers then
         if (self.ability.driver_tally or 0) >= 16 then
-            Aura.add_individual(self)
-            self.animation = {target = 1}
-        else
-            Aura.add_individual(self)
-            self.animation = {target = 0}
+            if self.config.center.pos.x == 0 then
+                G.E_MANAGER:add_event(Event({
+                    func = (function()
+                        self:flip()
+                        Aura.add_individual(self)
+                        self.animation = {target = 1}
+                        self:flip()
+                        return true
+                    end)
+                }))
+            end
+            else if self.config.center.pos.x == 1 then
+                G.E_MANAGER:add_event(Event({
+                    func = (function()
+                        self:flip()
+                        Aura.add_individual(self)
+                        self.animation = {target = 0}
+                        self:flip()
+                        return true
+                    end)
+                }))
+            end
         end
     end
 
@@ -668,8 +685,17 @@ SMODS.Joker:take_ownership('loyalty_card',
             card.children.center:set_sprite_pos({x = 0, y = 0}) -- Just In Case
          end
    end
-    },
-    true -- suppress the mod badge
+    }
+)
+
+SMODS.Joker:take_ownership('invisible',
+    { -- the table of properties you want to change
+   update = function(self, card, dt) -- change only update() to not mess with calculate()
+        if card.ability.invis_rounds >= card.ability.extra then -- card.ability.extra = 2 by default on invisible joker
+            card.children.center:set_sprite_pos({x = 10, y = 0})
+        end
+   end
+    }
 )
 
 --There's a bug with this function in 0.9.8 that screws up the joker pool
