@@ -108,7 +108,7 @@ AnimatedJokers = {
     j_ancient = {},
     j_ramen = {},
     j_walkie_talkie = {},
-    j_selzer = { frames = 5, individual = true }, -- todo: change sprite as it is used
+    j_selzer = { frames = 5, individual = true },
     j_castle = { frames_per_row = 9, frames = 69, start_frame = 0, extra = { frames_per_row = 5, frames = 5, fps = 5, start_frame = 0 } },
     j_smiley = { frames_per_row = 13, frames = 150 },
     j_campfire = {},
