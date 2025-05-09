@@ -32,7 +32,7 @@ AnimatedJokers = {
     j_mystic_summit = {},
     j_marble = {},
     j_loyalty_card = { frames = 7 },
-    j_8_ball = {},
+    j_8_ball = {}, -- todo: animate when triggered
     j_misprint = { frames_per_row = 13, frames = 65 },
     j_dusk = { frames_per_row = 13, frames = 78, fps = 5 },
     j_raised_fist = { frames_per_row = 4, frames = 14 },
@@ -41,7 +41,7 @@ AnimatedJokers = {
     j_steel_joker = {},
     j_scary_face = {},
     j_abstract = {},
-    j_delayed_grat = {},
+    j_delayed_grat = {}, -- todo: animate when primed
     j_hack = { frames_per_row = 8, frames = 64 },
     j_pareidolia = { frames_per_row = 5, frames = 20 },
     j_gros_michel = {},
@@ -56,7 +56,7 @@ AnimatedJokers = {
     j_burglar = { frames_per_row = 19, frames = 76 },
     j_blackboard = { frames_per_row = 9, frames = 59, individual = true },
     j_runner = {},
-    j_ice_cream = {},
+    j_ice_cream = {}, -- todo: change sprite as it is used
     j_dna = { frames = 11 },
     j_splash = {},
     j_blue_joker = {},
@@ -65,14 +65,14 @@ AnimatedJokers = {
     j_hiker = {},
     j_faceless = { frames_per_row = 4, frames = 24 },
     j_green_joker = {},
-    j_superposition = {},
+    j_superposition = {}, -- todo: animate when triggered
     j_todo_list = { frames_per_row = 12, frames = 96 }, -- todo: show hand that needs to be played/animate on trigger
     j_cavendish = {},
     j_card_sharp = {},
     j_red_card = { frames_per_row = 19, frames = 349 },
     j_madness = {},
     j_square = { frames_per_row = 11, frames = 22 },
-    j_seance = {},
+    j_seance = {}, -- todo: animate when triggered
     j_riff_raff = { frames_per_row = 14, frames = 490 },
     j_vampire = { frames_per_row = 6, frames = 30 },
     j_shortcut = {},
@@ -81,12 +81,12 @@ AnimatedJokers = {
     j_baron = {},
     j_cloud_9 = {},
     j_rocket = {},
-    j_obelisk = {},
+    j_obelisk = {}, -- todo: animate when promoted
     j_midas_mask = {},
     j_luchador = {},
     j_photograph = { frames = 48 },
     j_gift = {},
-    j_turtle_bean = {},
+    j_turtle_bean = {}, -- todo: change sprite as it is used
     j_erosion = {},
     j_reserved_parking = {},
     j_mail = {}, -- todo: show rank
@@ -97,18 +97,18 @@ AnimatedJokers = {
     j_drunkard = {},
     j_stone = {},
     j_golden = {},
-    j_lucky_cat = {},
+    j_lucky_cat = {}, -- todo: animate when promoted
     j_baseball = {},
     j_bull = {},
     j_diet_cola = { frames = 20 },
     j_trading = {},
     j_flash = { frames_per_row = 13, frames = 26, individual = true, immediate = true },
-    j_popcorn = {},
+    j_popcorn = {}, -- todo: change sprite as it is used
     j_trousers = { frames = 48 },
     j_ancient = {},
     j_ramen = {},
     j_walkie_talkie = {},
-    j_selzer = {},
+    j_selzer = {}, -- todo: change sprite as it is used
     j_castle = { frames_per_row = 9, frames = 69, start_frame = 0, extra = { frames_per_row = 5, frames = 5, fps = 5, start_frame = 0 } },
     j_smiley = { frames_per_row = 13, frames = 150 },
     j_campfire = {},
@@ -120,7 +120,7 @@ AnimatedJokers = {
     j_troubadour = {},
     j_certificate = { frames_per_row = 7, frames = 28, individual = true, extra = { frames = 5, fps = 0 } },
     j_smeared = { frames = 10 },
-    j_throwback = {},
+    j_throwback = {}, -- todo: animate when promoted
     j_hanging_chad = {},
     j_rough_gem = {},
     j_bloodstone = {},
@@ -136,7 +136,7 @@ AnimatedJokers = {
     j_idol = {}, -- todo: open mouth to show suit and rank
     j_seeing_double = {frames_per_row = 13, frames = 150, extra = { frames_per_row = 5, frames = 20, start_frame = 0 } },
     j_matador = {},
-    j_hit_the_road = {},
+    j_hit_the_road = {}, -- todo: animate when promoted
     j_duo = {},
     j_trio = {},
     j_family = {},
@@ -152,11 +152,11 @@ AnimatedJokers = {
     j_astronomer = {frames = 29 },
     j_burnt = {},
     j_bootstraps = {frames_per_row = 19, frames = 38 },
-    j_caino = {},
-    j_triboulet = {},
-    j_yorick = {},
-    j_chicot = {},
-    j_perkeo = {}
+    j_caino = {}, -- todo: add animations
+    j_triboulet = {}, -- todo: add animations
+    j_yorick = {}, -- todo: add animations
+    j_chicot = {}, -- todo: add animations
+    j_perkeo = {} -- todo: add animations
 }
 AnimatedPlanets = {
     c_fool = {},
