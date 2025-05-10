@@ -722,8 +722,12 @@ function Card:calculate_joker(context)
                 }))
             end
         end
-        if context.end_of_round then
+        if context.game_over or (context.setting_blind and G.GAME.round_resets.ante == 1 and G.GAME.round == 1) then
             Aura.add_individual(self)
+            self.animation = { target = 0 }
+            G.P_CENTERS["j_certificate"].pos.x = 0
+            G.P_CENTERS["j_certificate"].pos.y = 0
+            AnimatedJokers.j_certificate.extra.fps = 1
             G.P_CENTERS["j_certificate"].pos.extra.x = 0
             AnimatedJokers.j_certificate.extra.fps = 0
         end
