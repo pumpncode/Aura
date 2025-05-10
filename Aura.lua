@@ -2,9 +2,9 @@
 --- MOD_NAME: Aura
 --- MOD_ID: Aura
 --- MOD_AUTHOR: [MathIsFun_, ChromaPIE, Bard, TwoBlueDogs]
---- MOD_DESCRIPTION: Adds animations to Jokers. Art by: Bard, Grassy311, RattlingSnow353, Solace, RadicaAprils, chloe_cromslor, SadCube, and Mincoiin
+--- MOD_DESCRIPTION: Adds animations to Jokers. Art by: Bard, Grassy311, RattlingSnow353, Solace, RadicaAprils, chloe_cromslor, SadCube, Mincoiin, and Flowr
 --- BADGE_COLOUR: 3469ab
---- VERSION: 0.032
+--- VERSION: 0.0321
 
 AnimatedJokers = {
     j_joker = { frames_per_row = 11, frames = 22 },
