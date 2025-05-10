@@ -664,8 +664,8 @@ function Card:calculate_joker(context)
     end
 
     local ss = Card.set_seal
-    function Card:set_seal(seal)
-        ss(self,seal)
+    function Card:set_seal(seal, silent, immediate)
+        ss(self,seal,silent,immediate)
         if seal then
             Aura.current_seal = seal
         end
@@ -724,9 +724,6 @@ function Card:calculate_joker(context)
         end
         if context.end_of_round then
             Aura.add_individual(self)
-            self.animation = { target = 0 }
-            G.P_CENTERS["j_certificate"].pos.x = 0
-            G.P_CENTERS["j_certificate"].pos.y = 0
             G.P_CENTERS["j_certificate"].pos.extra.x = 0
             AnimatedJokers.j_certificate.extra.fps = 0
         end
