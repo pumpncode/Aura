@@ -52,7 +52,7 @@ AnimatedJokers = {
     j_supernova = {},
     j_ride_the_bus = { frames_per_row = 9, frames = 36 },
     j_space = { frames = 96 },
-    j_egg = { frames_per_row = 4, frames = 8 },
+    j_egg = { frames_per_row = 4, frames = 8, individual = true },
     j_burglar = { frames_per_row = 19, frames = 76 },
     j_blackboard = { frames_per_row = 9, frames = 59, individual = true },
     j_runner = {},
@@ -816,6 +816,28 @@ SMODS.Joker:take_ownership('loyalty_card',
             card.children.center:set_sprite_pos({x = 0, y = 0}) -- Just In Case
          end
    end
+    }
+)
+
+SMODS.Joker:take_ownership('egg',
+    {
+        update = function(self, card, dt)
+            if card.ability then
+                if not card.old_value then
+                    card.old_value = card.ability.extra_value
+                end
+                if card.ability.extra_value > card.old_value then
+                    Aura.add_individual(card)
+                    card.old_value = card.ability.extra_value
+                    card.animation = { target = 8 }
+                end
+                if card.config.center.pos.x == 3 and card.config.center.pos.y == 1 then
+                    card.animation = { target = 0 }
+                    card.config.center.pos.x = 0
+                    card.config.center.pos.y = 0
+                end
+            end
+        end
     }
 )
 
