@@ -767,8 +767,7 @@ SMODS.Joker:take_ownership('certificate',
                         end)
                     }))
                     card.signature_reset = true
-                end
-                if card.made_seal == 'Purple' then
+                elseif card.made_seal == 'Purple' then
                     card.made_seal = "none"
                     G.E_MANAGER:add_event(Event({ delay = 10*G.SETTINGS.GAMESPEED,
                         func = (function()
@@ -777,8 +776,7 @@ SMODS.Joker:take_ownership('certificate',
                         end)
                     }))
                     card.signature_reset = true
-                end
-                if card.made_seal == 'Red' then
+                elseif card.made_seal == 'Red' then
                     card.made_seal = "none"
                     G.E_MANAGER:add_event(Event({ delay = 10*G.SETTINGS.GAMESPEED,
                         func = (function()
@@ -787,12 +785,20 @@ SMODS.Joker:take_ownership('certificate',
                         end)
                     }))
                     card.signature_reset = true
-                end
-                if card.made_seal == 'Blue' then
+                elseif card.made_seal == 'Blue' then
                     card.made_seal = "none"
                     G.E_MANAGER:add_event(Event({ delay = 10*G.SETTINGS.GAMESPEED,
                         func = (function()
                             card.children.center.atlas = G.ASSET_ATLAS['aura_j_certificate_blue']
+                            return true
+                        end)
+                    }))
+                    card.signature_reset = true
+                else
+                    card.made_seal = "none"
+                    G.E_MANAGER:add_event(Event({ delay = 10*G.SETTINGS.GAMESPEED,
+                        func = (function()
+                            card.children.center.atlas = G.ASSET_ATLAS['aura_j_certificate']
                             return true
                         end)
                     }))
