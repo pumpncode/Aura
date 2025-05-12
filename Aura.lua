@@ -53,7 +53,7 @@ AnimatedJokers = {
     j_ride_the_bus = { frames_per_row = 9, frames = 36 },
     j_space = { frames = 96 },
     j_egg = { frames_per_row = 4, frames = 8, individual = true },
-    j_burglar = { frames_per_row = 19, frames = 76 },
+    j_burglar = { frames_per_row = 19, frames = 76, individual = true },
     j_blackboard = { frames_per_row = 9, frames = 59, individual = true },
     j_runner = {},
     j_ice_cream = {}, -- todo: change sprite as it is used
@@ -681,6 +681,11 @@ function Card:calculate_joker(context)
         end
     end
 
+    if self.ability.name == "Burglar" and not (context.blueprint_card or self).getting_sliced and context.setting_blind then
+        Aura.add_individual(self)
+        self.animation = { target = 75 }
+    end
+
     return ret1, ret2
 end
 
@@ -784,6 +789,19 @@ SMODS.Joker:take_ownership('loyalty_card',
             card.children.center:set_sprite_pos({x = 0, y = 0}) -- Just In Case
          end
    end
+    }
+)
+
+SMODS.Joker:take_ownership('burglar',
+    {
+        update = function(self, card, dt)
+            if card.config.center.pos.x == 18 and card.config.center.pos.y == 3 then
+                Aura.add_individual(card)
+                card.animation = { target = 0 }
+                card.config.center.pos.x = 0
+                card.config.center.pos.y = 0
+            end
+        end
     }
 )
 
