@@ -52,7 +52,7 @@ AnimatedJokers = {
     j_supernova = {},
     j_ride_the_bus = { frames_per_row = 9, frames = 36 },
     j_space = { frames = 96 },
-    j_egg = { frames_per_row = 4, frames = 8 },
+    j_egg = { frames_per_row = 4, frames = 8, individual = true },
     j_burglar = { frames_per_row = 19, frames = 76 },
     j_blackboard = { frames_per_row = 9, frames = 59, individual = true },
     j_runner = {},
@@ -105,20 +105,20 @@ AnimatedJokers = {
     j_flash = { frames_per_row = 13, frames = 26, individual = true, immediate = true },
     j_popcorn = {}, -- todo: change sprite as it is used
     j_trousers = { frames = 48 },
-    j_ancient = {},
-    j_ramen = {},
+    j_ancient = {}, -- todo: change sprite to indicate suit
+    j_ramen = {}, -- todo: change sprite as it is used
     j_walkie_talkie = {},
     j_selzer = { frames = 5, individual = true },
     j_castle = { frames_per_row = 9, frames = 69, start_frame = 0, extra = { frames_per_row = 5, frames = 5, fps = 5, start_frame = 0 } },
     j_smiley = { frames_per_row = 13, frames = 150 },
     j_campfire = {},
     j_ticket = {},
-    j_mr_bones = {},
+    j_mr_bones = {}, -- todo: destroy animation?
     j_acrobat = {},
     j_sock_and_buskin = {},
     j_swashbuckler = {},
     j_troubadour = {},
-    j_certificate = { frames_per_row = 7, frames = 28, individual = true, extra = { frames = 5, fps = 0 } },
+    j_certificate = { frames_per_row = 7, frames = 28, individual = true },
     j_smeared = { frames = 10 },
     j_throwback = {}, -- todo: animate when promoted
     j_hanging_chad = {},
@@ -150,7 +150,7 @@ AnimatedJokers = {
     j_drivers_license = { frames = 2, individual = true },
     j_cartomancer = {},
     j_astronomer = {frames = 29 },
-    j_burnt = {},
+    j_burnt = {}, -- todo: animate when primed?
     j_bootstraps = {frames_per_row = 19, frames = 38 },
     j_caino = {}, -- todo: add animations
     j_triboulet = {}, -- todo: add animations
@@ -663,49 +663,25 @@ function Card:calculate_joker(context)
         end
     end
 
-    local ss = Card.set_seal
-    function Card:set_seal(seal)
-        ss(self,seal)
-        if seal then
-            Aura.current_seal = seal
-        end
-    end
     if self.ability.name == "Certificate" then
-        if context.first_hand_drawn then
-            ss(self)
-            if Aura.current_seal == 'Gold' then
-                AnimatedJokers.j_certificate.individual = false
-                AnimatedJokers.j_certificate.extra.fps = 1
-                G.P_CENTERS["j_certificate"].pos.extra.x = 1
-                AnimatedJokers.j_certificate.extra.fps = 0
-            end
-            if Aura.current_seal == 'Purple' then
-                AnimatedJokers.j_certificate.individual = false
-                AnimatedJokers.j_certificate.extra.fps = 1
-                G.P_CENTERS["j_certificate"].pos.extra.x = 2
-                AnimatedJokers.j_certificate.extra.fps = 0
-            end
-            if Aura.current_seal == 'Red' then
-                AnimatedJokers.j_certificate.individual = false
-                AnimatedJokers.j_certificate.extra.fps = 1
-                G.P_CENTERS["j_certificate"].pos.extra.x = 3
-                AnimatedJokers.j_certificate.extra.fps = 0
-            end
-            if Aura.current_seal == 'Blue' then
-                AnimatedJokers.j_certificate.individual = false
-                AnimatedJokers.j_certificate.extra.fps = 1
-                G.P_CENTERS["j_certificate"].pos.extra.x = 4
-                AnimatedJokers.j_certificate.extra.fps = 0
-            end
-        end
         if context.end_of_round then
-            AnimatedJokers.j_certificate.individual = true
-            Aura.add_individual(self)
-            self.animation = { target = 0 }
-            G.P_CENTERS["j_certificate"].pos.x = 0
-            G.P_CENTERS["j_certificate"].pos.y = 0
-            G.P_CENTERS["j_certificate"].pos.extra.x = 0
-            AnimatedJokers.j_certificate.extra.fps = 0
+            self.certificate_ran = false
+            self.signature_reset = false
+        end
+        if (self.certificate_ran == false or not self.certificate_ran) then
+            if context.playing_card_added and not (Aura.current_seal == nil) and (self.made_seal == "none" or not self.made_seal) then
+                self.made_seal = Aura.current_seal
+                Aura.current_seal = nil
+                self.setting_seal = true
+            end
+            if self.signature_reset == true then
+                Aura.add_individual(self)
+                self.config.center.pos.x = 0
+                self.config.center.pos.y = 0
+                self.animation = { target = 27 }
+                self.signature_reset = false
+                self.certificate_ran = true
+            end
         end
     end
 
@@ -746,6 +722,93 @@ function Card:calculate_joker(context)
     return ret1, ret2
 end
 
+Aura.ss = Card.set_seal
+function Card:set_seal(seal, silent, immediate)
+    Aura.ss(self,seal,silent,immediate)
+    if seal then
+        Aura.current_seal = seal
+    end
+end
+SMODS.Atlas {
+    key = "j_certificate_gold",
+    path = "j_certificate_gold" .. ".png",
+    px = 71,
+    py = 95
+}
+SMODS.Atlas {
+    key = "j_certificate_purple",
+    path = "j_certificate_purple" .. ".png",
+    px = 71,
+    py = 95
+}
+SMODS.Atlas {
+    key = "j_certificate_red",
+    path = "j_certificate_red" .. ".png",
+    px = 71,
+    py = 95
+}
+SMODS.Atlas {
+    key = "j_certificate_blue",
+    path = "j_certificate_blue" .. ".png",
+    px = 71,
+    py = 95
+}
+SMODS.Joker:take_ownership('certificate',
+    {
+        update = function(self, card, dt)
+            if card.ability and not (card.made_seal == "none") and card.setting_seal == true then
+                card.setting_seal = false
+                if card.made_seal == 'Gold' then
+                    card.made_seal = "none"
+                    G.E_MANAGER:add_event(Event({ delay = 10*G.SETTINGS.GAMESPEED,
+                        func = (function()
+                            card.children.center.atlas = G.ASSET_ATLAS['aura_j_certificate_gold']
+                            return true
+                        end)
+                    }))
+                    card.signature_reset = true
+                elseif card.made_seal == 'Purple' then
+                    card.made_seal = "none"
+                    G.E_MANAGER:add_event(Event({ delay = 10*G.SETTINGS.GAMESPEED,
+                        func = (function()
+                            card.children.center.atlas = G.ASSET_ATLAS['aura_j_certificate_purple']
+                            return true
+                        end)
+                    }))
+                    card.signature_reset = true
+                elseif card.made_seal == 'Red' then
+                    card.made_seal = "none"
+                    G.E_MANAGER:add_event(Event({ delay = 10*G.SETTINGS.GAMESPEED,
+                        func = (function()
+                            card.children.center.atlas = G.ASSET_ATLAS['aura_j_certificate_red']
+                            return true
+                        end)
+                    }))
+                    card.signature_reset = true
+                elseif card.made_seal == 'Blue' then
+                    card.made_seal = "none"
+                    G.E_MANAGER:add_event(Event({ delay = 10*G.SETTINGS.GAMESPEED,
+                        func = (function()
+                            card.children.center.atlas = G.ASSET_ATLAS['aura_j_certificate_blue']
+                            return true
+                        end)
+                    }))
+                    card.signature_reset = true
+                else
+                    card.made_seal = "none"
+                    G.E_MANAGER:add_event(Event({ delay = 10*G.SETTINGS.GAMESPEED,
+                        func = (function()
+                            card.children.center.atlas = G.ASSET_ATLAS['aura_j_certificate']
+                            return true
+                        end)
+                    }))
+                    card.signature_reset = true
+                end
+            end
+        end
+    }
+)
+
 SMODS.Joker:take_ownership('loyalty_card',
     { -- the table of properties you want to change
    update = function(self, card, dt) -- change only update() to not mess with calculate()
@@ -759,6 +822,28 @@ SMODS.Joker:take_ownership('loyalty_card',
             card.children.center:set_sprite_pos({x = 0, y = 0}) -- Just In Case
          end
    end
+    }
+)
+
+SMODS.Joker:take_ownership('egg',
+    {
+        update = function(self, card, dt)
+            if card.ability then
+                if not card.old_value then
+                    card.old_value = card.ability.extra_value
+                end
+                if card.ability.extra_value > card.old_value then
+                    Aura.add_individual(card)
+                    card.old_value = card.ability.extra_value
+                    card.animation = { target = 8 }
+                end
+                if card.config.center.pos.x == 3 and card.config.center.pos.y == 1 then
+                    card.animation = { target = 0 }
+                    card.config.center.pos.x = 0
+                    card.config.center.pos.y = 0
+                end
+            end
+        end
     }
 )
 
