@@ -4,7 +4,7 @@
 --- MOD_AUTHOR: [MathIsFun_, ChromaPIE, Bard, TwoBlueDogs]
 --- MOD_DESCRIPTION: Adds animations to Jokers. Art by: Bard, Grassy311, RattlingSnow353, Solace, RadicaAprils, chloe_cromslor, SadCube, Mincoiin, and Flowr
 --- BADGE_COLOUR: 3469ab
---- VERSION: 0.034
+--- VERSION: 0.035
 
 AnimatedJokers = {
     j_joker = { frames_per_row = 11, frames = 22 },
@@ -53,7 +53,7 @@ AnimatedJokers = {
     j_ride_the_bus = { frames_per_row = 9, frames = 36 },
     j_space = { frames = 96 },
     j_egg = { frames_per_row = 4, frames = 8, individual = true },
-    j_burglar = { frames_per_row = 19, frames = 76 },
+    j_burglar = { frames_per_row = 19, frames = 76, individual = true },
     j_blackboard = { frames_per_row = 9, frames = 59, individual = true },
     j_runner = {},
     j_ice_cream = {}, -- todo: change sprite as it is used
@@ -346,44 +346,6 @@ if SMODS.Atlas then
             })
         else
             SMODS[v and v.set or "Voucher"]:take_ownership(k, {}, true)
-        end
-    end
-else
-    local init = SMODS["INIT"]
-    function init.Aura()
-        --0.9.8 compat by @ChromaPIE
-        --Register all Jokers/Sprites
-        for i = 1, 150 do
-            local k = G.P_CENTER_POOLS.Joker[i].key
-            local v = AnimatedJokers[k]
-            if v then
-            --joker override
-            SMODS[v.set or "Joker"]:take_ownership(k):register()
-            --sprite
-            --todo: add extra layer, waiting unitl 0.9.8 compat is fixed
-            if v.frames then
-                SMODS.Sprite:new(
-                    k,
-                    SMODS.findModByID('Aura').path,
-                    k .. ".png",
-                    v.px or 71,
-                    v.py or 95,
-                    "asset_atli"
-                ):register()
-                SMODS.Jokers[k].atlas = k
-                SMODS.Jokers[k].pos = { x = 0, y = 0 }
-                if v.extra then
-                    SMODS.Sprite:new(
-                        k .. "_extra",
-                        SMODS.findModByID('Aura').path,
-                        k .. "_extra.png",
-                        v.px or 71,
-                        v.py or 95,
-                        "asset_atli"
-                    ):register()
-                    SMODS.Jokers[k].pos.extra = { x = 0, y = 0, atlas = k .. "_extra"}
-                end
-            end end
         end
     end
 end
@@ -719,6 +681,11 @@ function Card:calculate_joker(context)
         end
     end
 
+    if self.ability.name == "Burglar" and not (context.blueprint_card or self).getting_sliced and context.setting_blind then
+        Aura.add_individual(self)
+        self.animation = { target = 75 }
+    end
+
     return ret1, ret2
 end
 
@@ -825,6 +792,19 @@ SMODS.Joker:take_ownership('loyalty_card',
     }
 )
 
+SMODS.Joker:take_ownership('burglar',
+    {
+        update = function(self, card, dt)
+            if card.config.center.pos.x == 18 and card.config.center.pos.y == 3 then
+                Aura.add_individual(card)
+                card.animation = { target = 0 }
+                card.config.center.pos.x = 0
+                card.config.center.pos.y = 0
+            end
+        end
+    }
+)
+
 SMODS.Joker:take_ownership('egg',
     {
         update = function(self, card, dt)
@@ -847,80 +827,3 @@ SMODS.Joker:take_ownership('egg',
     }
 )
 
---There's a bug with this function in 0.9.8 that screws up the joker pool
---So we just override it to fix our problems
-if SMODS.injectJokers then
-    function SMODS.injectJokers()
-        local minId = table_length(G.P_CENTER_POOLS['Joker']) + 1
-        local id = 0
-        local i = 0
-        local joker = nil
-        for k, slug in ipairs(SMODS.BUFFERS.Jokers) do
-            joker = SMODS.Jokers[slug]
-            if joker.order then
-                id = joker.order
-            else
-                i = i + 1
-                id = i + minId
-            end
-            local joker_obj = {
-                discovered = joker.discovered,
-                name = joker.name,
-                set = "Joker",
-                unlocked = joker.unlocked,
-                order = id,
-                key = joker.slug,
-                pos = joker.pos,
-                config = joker.config,
-                rarity = joker.rarity,
-                blueprint_compat = joker.blueprint_compat,
-                eternal_compat = joker.eternal_compat,
-                effect = joker.effect,
-                cost = joker.cost,
-                cost_mult = 1.0,
-                atlas = joker.atlas or nil,
-                mod_name = joker.mod_name,
-                badge_colour = joker.badge_colour,
-                soul_pos = joker.soul_pos,
-                -- * currently unsupported
-                no_pool_flag = joker.no_pool_flag,
-                yes_pool_flag = joker.yes_pool_flag,
-                unlock_condition = joker.unlock_condition,
-                enhancement_gate = joker.enhancement_gate,
-                start_alerted = joker.start_alerted
-            }
-            for _i, sprite in ipairs(SMODS.Sprites) do
-                if sprite.name == joker_obj.key then
-                    joker_obj.atlas = sprite.name
-                end
-            end
-    
-            -- Now we replace the others
-            G.P_CENTERS[slug] = joker_obj
-            if not joker.taken_ownership then
-                table.insert(G.P_CENTER_POOLS['Joker'], joker_obj)
-                table.insert(G.P_JOKER_RARITY_POOLS[joker_obj.rarity], joker_obj)
-            else
-                for kk, v in ipairs(G.P_CENTER_POOLS['Joker']) do
-                    if v.key == slug then G.P_CENTER_POOLS['Joker'][kk] = joker_obj end
-                end
-                if joker_obj.rarity == joker.rarity_original then
-                    for kk, v in ipairs(G.P_JOKER_RARITY_POOLS[joker_obj.rarity]) do
-                        if v.key == slug then G.P_JOKER_RARITY_POOLS[joker_obj.rarity][kk] = joker_obj end
-                    end
-                else
-                    table.insert(G.P_JOKER_RARITY_POOLS[joker_obj.rarity], joker_obj)
-                    local j
-                    for kk, v in ipairs(G.P_JOKER_RARITY_POOLS[joker.rarity_original]) do
-                        if v.key == slug then j = kk end
-                    end
-                    table.remove(G.P_JOKER_RARITY_POOLS[joker.rarity_original], j)
-                end
-            end
-            -- Setup Localize text
-            G.localization.descriptions["Joker"][slug] = joker.loc_txt
-    
-            sendInfoMessage("Registered Joker " .. joker.name .. " with the slug " .. joker.slug .. " at ID " .. id .. ".")
-        end
-    end
-end
